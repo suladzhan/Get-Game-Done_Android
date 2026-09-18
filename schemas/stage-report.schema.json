@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Stage Report",
+  "type": "object",
+  "required": [
+    "stage",
+    "status",
+    "goal",
+    "changed",
+    "validated",
+    "risks",
+    "next_action"
+  ],
+  "properties": {
+    "stage": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "passed",
+        "ready_for_review",
+        "blocked",
+        "failed"
+      ]
+    },
+    "goal": {
+      "type": "string"
+    },
+    "changed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validated": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "not_validated": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_action": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

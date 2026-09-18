@@ -1,0 +1,94 @@
+version: 1
+engine: Unity
+target_platform: Android
+state_file: PROJECT_STATE.md
+report_template: templates/STAGE_REPORT.md
+
+approval_gates:
+  human_required:
+    - purchase_asset_or_service
+    - accept_paid_terms
+    - publish_store_build
+    - create_or_rotate_production_credentials
+    - change_signing_key
+    - enable_live_ads_or_real_money_iap
+    - destructive_player_data_migration
+
+stages:
+  - id: "00"
+    name: discovery_audit
+    lead_agent: orchestrator
+    skills: [project-audit]
+    outputs: [PROJECT_STATE.md]
+    exit: [project_inventory_complete, current_build_status_known, blockers_recorded]
+  - id: "01"
+    name: concept_game_design
+    lead_agent: game-designer
+    skills: [game-design]
+    outputs: [docs/GAME_DESIGN.md, docs/ROADMAP.md]
+    exit: [core_loop_defined, audience_defined, scope_and_non_goals_defined]
+  - id: "02"
+    name: core_loop_prototype
+    lead_agent: prototype-engineer
+    skills: [core-loop-prototyping, unity-architecture]
+    exit: [playable_loop_exists, win_fail_restart_work, no_blocking_compile_errors]
+  - id: "03"
+    name: mvp_vertical_slice
+    lead_agent: gameplay-systems-engineer
+    skills: [unity-architecture, save-and-state, responsive-ui]
+    exit: [end_to_end_session_works, persistence_works, basic_settings_work]
+  - id: "04"
+    name: content_progression_economy
+    lead_agent: content-economy-designer
+    supporting_agents: [gameplay-systems-engineer]
+    skills: [progression-economy, data-driven-content]
+    exit: [content_pipeline_maintainable, economy_sources_sinks_documented, pacing_sanity_checked]
+  - id: "05"
+    name: art_assets
+    lead_agent: art-director
+    supporting_agents: [asset-scout]
+    skills: [art-direction, asset-research, asset-import]
+    outputs: [docs/ART_DIRECTION.md, docs/ASSET_REQUIREMENTS.md, docs/ASSET_REGISTER.md]
+    exit: [art_direction_defined, required_assets_available_or_blocked, licenses_recorded]
+  - id: "06"
+    name: visual_polish
+    lead_agent: visual-polish-engineer
+    skills: [visual-polish, responsive-ui]
+    exit: [placeholders_resolved, feedback_consistent, visual_regression_checked]
+  - id: "07"
+    name: audio_haptics
+    lead_agent: audio-haptics-designer
+    skills: [audio-haptics]
+    exit: [major_actions_have_feedback, audio_settings_work, lifecycle_checked]
+  - id: "08"
+    name: mobile_adaptation
+    lead_agent: mobile-adaptation-engineer
+    skills: [responsive-ui, localization, android-build]
+    exit: [real_device_build_tested, safe_area_checked, lifecycle_checked, touch_input_checked]
+  - id: "09"
+    name: performance
+    lead_agent: performance-engineer
+    skills: [performance-profiling]
+    exit: [profiling_recorded, budgets_checked, regressions_checked]
+  - id: "10"
+    name: qa_regression
+    lead_agent: qa-engineer
+    skills: [qa-test-matrix]
+    outputs: [docs/QA_CHECKLIST.md]
+    exit: [no_open_blockers, regression_pass_recorded, known_issues_documented]
+  - id: "11"
+    name: monetization_analytics
+    lead_agent: monetization-analytics-engineer
+    skills: [analytics-instrumentation, monetization-integration]
+    exit: [events_verified, test_mode_flows_verified, secrets_clean]
+  - id: "12"
+    name: release
+    lead_agent: release-manager
+    skills: [google-play-release, android-build]
+    outputs: [docs/RELEASE_CHECKLIST.md]
+    exit: [release_candidate_built, checklist_complete, rollback_plan_exists]
+  - id: "13"
+    name: live_ops
+    lead_agent: live-ops-analyst
+    skills: [live-ops]
+    exit: [update_goal_defined, telemetry_reviewed, post_release_review_planned]
