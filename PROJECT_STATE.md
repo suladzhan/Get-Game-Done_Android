@@ -49,9 +49,9 @@ This repository is a development framework, not a playable Unity game. No gamepl
 
 - Date: 2026-09-18
 - Build/device: Not applicable; no Unity project or playable build is present
-- Tests performed: Repository structure and Git state audit
-- Result: Framework files are present; no runtime build validation performed
+- Tests performed: Repository structure and Git state audit; verified `main` push to the requested GitHub remote
+- Result: Framework files are published on `main`; no runtime build validation performed
 
 ## Next approved action
 
-Publish the framework contents to the requested GitHub repository and verify the remote branch.
+When this framework is adopted by a concrete Unity game, populate the project-specific state fields and begin the applicable discovery/audit stage.
